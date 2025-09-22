@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Birthday Today</title>
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='birth_cake.png') }}">
+    <link rel="stylesheet" href="/static/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      
+    />
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="container">
+        <h1 class="logo">Birthday Reminder</h1>
+        <button class="add-btn" id="addBirthdayBtn">
+          <i class="fas fa-plus"></i> New
+        </button>
+      </div>
+    </nav>
+
+<main class="container">
+      <!-- Birthday Form Modal -->
+      <div class="modal" id="birthdayModal">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2>Add New Birthday</h2>
+            <button class="close-btn" id="closeModal">
+              <i class="fas fa-times"></i>
+            </button>
+          </div>
+          <form id="birthdayForm" class="birthday-form">
+            <div class="form-group">
+              <label for="surname"> Surname</label>
+              <input
+                type="text"
+                id="surname"
+                name="surname"
+                required
+                placeholder="Enter Surname name"
+              />
+            </div>
+            
+            <div class="form-group">
+              <label for="Firstname"> First Name</label>
+              <input
+                type="text"
+                id="firstname"
+                name="firstname"
+                required
+                placeholder="Enter First Name "
+              />
+            </div>
+            
+            <div class="form-group">
+              <label for="year">Year</label>
+              <input
+                type="number"
+                id="year"
+                name="year"
+                placeholder="Enter Year of Birth"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="month">Month</label>
+              <input
+                type="number"
+                id="month"
+                name="month"
+                placeholder="Enter Month of Birth"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="day">Day</label>
+              <input
+                type="number"
+                id="day"
+                name="day"
+                placeholder="Enter Day of Birth"
+              />
+            </div>
+
+            <!--I REMOVED THIS SO IT IS EASIER TO PERFORM THE BIRTHDAY CALCULATION IN THE BACKEND-->
+            <!-- <div class="form-group">
+              <label for="dob">Date of Birth</label>
+              <input type="date" id="dob" name="dob" required />
+            </div> -->
+
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+
+                placeholder="Enter email"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="phone">Phone Number</label>
+              <input
+                type="tel"
+                id="phone"
+                name="phone"
+                placeholder="Enter phone number"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="notes">Special Notes</label>
+              <textarea
+                id="notes"
+                name="notes"
+                placeholder="Add any special notes"
+              ></textarea>
+            </div>
+
+            <button type="submit" class="submit-btn">
+              <i class="fas fa-save"></i> Save Birthday
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <div class="celebration-card">
+        <div class="confetti-icon">
+          <i class="fas fa-birthday-cake"></i>
+        </div>
+        <div class="celebration-text">
+          <h2>Today's Birthday</h2>
+          <div class="birthday-message">
+            <p class="celebrant">{% for entry in birthdays %}
+              {{entry.Bday}}
+            </p>
+            {% if entry.age %} <em>
+            <p class="age">{{entry.age}}</em> today 🎉</p>{% endif %}
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p class="copyright">
+          Made with <i class="fas fa-heart"></i> by <a href="https://github.com/Princeguam"> Guam</a> and <a href="https://github.com/fats-cmd"> Fats-cmd</a> | 2025
+        </p>
+      </div>
+    </footer>
+    <script defer src="/static/script.js" ></script>
+  </body>
+</html>
