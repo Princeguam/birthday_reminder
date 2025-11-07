@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.ico') }}">
+
+  <title>{% block title %} {%endblock%}</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: #F5F3FF;
+      font-family: Arial, sans-serif;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .container {
+      background: white;
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 400px;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      font-weight: bold;
+      color: #000;
+    }
+    h3 {
+      text-align: center;
+      margin-bottom: 15px;
+    }
+
+    .tab-buttons {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+
+    .tab-buttons button {
+      flex: 1;
+      padding: 10px 0;
+      background-color: transparent;
+      border: none;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      color: #0000FF;
+      border-bottom: 3px solid transparent;
+      transition: border-color 0.3s;
+    }
+
+    .tab-buttons button.active {
+      border-color: #0000FF;
+    }
+
+    form {
+      display: none;
+      flex-direction: column;
+    }
+
+    form.active {
+      display: flex;
+    }
+
+    input {
+      margin-bottom: 15px;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 14px;
+    }
+
+    button.submit-btn {
+      background-color: #0000FF;
+      color: white;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button.submit-btn:hover {
+      background-color: #0000CC;
+    }
+
+    .back-home {
+      text-align: center;
+      margin-top: 15px;
+    }
+
+    .back-home a {
+      color: #0000FF;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    p {
+      text-align: left;
+    }
+
+    .back-home a:hover {
+      text-decoration: underline;
+    }
+ 
+  
+    @media (max-width: 480px) {
+      .container {
+        padding: 25px;
+      }
+
+      h2 {
+        font-size: 1.4rem;
+      }
+      h3 {
+        font-size: 1.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>The Birthday Database</h2>
+    <h3> {%block header %} {% endblock %}</h3> 
+
+    {% block content %}
+
+    {% endblock %}
+
+
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      </div> 
+      {% for category, message in messages %}
+       <p class=" alert-{{ category }}">{{ message }}</p>
+      {% endfor %}
+     </div>
+    {% endif %}
+  {% endwith %}
+
+
+
+    <div class="back-home">
+      <a href="/home">← Back to Home</a>
+    </div>
+  </div>
+
+  <script>
+    const loginTab = document.getElementById("loginTab");
+    const registerTab = document.getElementById("registerTab");
+    const loginForm = document.getElementById("loginForm");
+    const registerForm = document.getElementById("registerForm");
+
+    function showForm(type) {
+      if (type === "login") {
+        loginForm.classList.add("active");
+        registerForm.classList.remove("active");
+        loginTab.classList.add("active");
+        registerTab.classList.remove("active");
+      } else {
+        registerForm.classList.add("active");
+        loginForm.classList.remove("active");
+        registerTab.classList.add("active");
+        loginTab.classList.remove("active");
+      }
+    }
+  </script>
+</body>
+</html>
