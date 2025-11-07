@@ -1,9 +1,11 @@
-from mongoengine import *
+from mongoengine import StringField, IntField, Document, connect, DateTimeField
 from os import getenv
 from dotenv import load_dotenv
-
 load_dotenv()
-DB_URI = getenv("DB_URL")
+DB_URI = getenv("DB_URI")
+
+SESSION_SECRET_KEY = getenv('SESSION_SECRET_KEY')
+
 
 #connecting to the DB
 connect("dob_DB", host=DB_URI)
