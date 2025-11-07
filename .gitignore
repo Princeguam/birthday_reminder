@@ -2,5 +2,7 @@
 /extra
 .env
 notes.txt
+/templates/error.html
 test_db.py
 /__pycache__
+/models/__pycache__
